@@ -1,0 +1,79 @@
+---
+title: MAESTRO
+description: Генерация, запуск и эволюция reasoning-цепочек — из удобного терминального интерфейса (TUI и CLI).
+template: splash
+hero:
+  tagline: Одна экосистема для reasoning-агентов. Опишите задачу — и MAESTRO соберёт, запустит и улучшит цепочку прямо в терминале.
+  image:
+    file: ../../../assets/evoc-mascot-square.webp
+  actions:
+    - text: Начать
+      link: care/getting-started/overview/
+      variant: primary
+    - text: Формат CARL
+      link: carl/getting-started/overview/
+      variant: minimal
+    - text: Agent Skill
+      link: care/skill/overview/
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## С чего начать
+
+<CardGrid>
+	<LinkCard
+		title="MAESTRO → TUI и CLI"
+		href="care/getting-started/overview/"
+		description="Сама система: управляйте ею из терминального интерфейса MAESTRO CARE (TUI) или из headless-CLI `care`, чтобы генерировать, запускать, сохранять и эволюционировать reasoning-цепочки. Начать отсюда для интерактивной работы с агентами."
+	/>
+	<LinkCard
+		title="CARL → формат цепочек"
+		href="carl/getting-started/overview/"
+		description="Формат, в котором описываются reasoning-цепочки: типизированные шаги, зависимости и контекст под каждый шаг. Начать отсюда, чтобы понять устройство цепочки."
+	/>
+	<LinkCard
+		title="Agent Skill → управляйте MAESTRO из агента"
+		href="care/skill/overview/"
+		description="Скачиваемый скилл формата agentskills.io: даёт Claude Code или hermes запускать CLI `care` — генерировать, запускать и эволюционировать цепочки — с переносимым автоопределением. Начать отсюда, чтобы установить."
+	/>
+</CardGrid>
+
+## Установка скилла агента
+
+Дайте Claude Code, Codex, hermes или OpenClaw скилл Maestro одной командой:
+
+```bash
+uvx maestro-install skill        # спросит агента; или --agent claude | codex | hermes | openclaw | all
+```
+
+Он скачивает и распаковывает скилл в каталог скиллов агента:
+
+- Claude Code → `~/.claude/skills/maestro`
+- Codex → `~/.codex/skills/maestro`
+- hermes → `~/.hermes/skills/maestro`
+- OpenClaw → `~/.openclaw/skills/maestro`
+
+Подробнее: [Agent Skill](care/skill/overview/) · [Установка и использование](care/skill/install/).
+
+## Как это связано
+
+**MAESTRO** — продукт поверх стека из четырёх частей. Каждая часть отвечает за один этап жизни цепочки.
+
+<CardGrid>
+	<Card title="MAGE — генерация" icon="seti:python">
+		Превращает задачу на естественном языке в CARL-цепочку.
+	</Card>
+	<Card title="CARL — формат цепочек" icon="open-book">
+		Формат, в котором описана каждая цепочка: шаги, зависимости и контекстные запросы.
+	</Card>
+	<Card title="GigaEvo Memory — хранение" icon="document">
+		Хранит цепочки, агентов, навыки и историю запусков.
+	</Card>
+	<Card title="GigaEvo Platform — эволюция" icon="random">
+		Запускает генетический поиск по цепочкам и продвигает лучших.
+	</Card>
+</CardGrid>
+
+Если коротко: **CARL — это формат, а MAESTRO — система, которая его запускает.** MAGE описывает цепочку в формате CARL, а MAESTRO запускает и эволюционирует её — из терминального интерфейса **MAESTRO CARE** (TUI) или из CLI `care`.
